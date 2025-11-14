@@ -3,22 +3,82 @@ return {
   dependencies = {
     'rafamadriz/friendly-snippets',
     'williamboman/mason.nvim',
+    'archie-judd/blink-cmp-words',  -- 词典和同义词补全
   },
   event = { 'BufReadPost', 'BufNewFile' },
   version = '1.*',
   -- build = 'cargo build --release',
   opts = {
-    keymap = { preset = 'default' },
+    keymap = {
+      preset = 'default',
+      -- 添加文档滚动快捷键
+      ['<C-u>'] = { 'scroll_documentation_up', 'fallback' },
+      ['<C-d>'] = { 'scroll_documentation_down', 'fallback' },
+    },
     appearance = {
       nerd_font_variant = 'mono'
     },
     completion = {
-      documentation = { auto_show = false }
+      -- 启用自动显示文档
+      documentation = {
+        auto_show = true,
+        window = {
+          border = 'single',
+          scrollbar = false,
+        },
+      },
+      -- 补全菜单配置
+      menu = {
+        border = 'single',
+        auto_show = true,
+        auto_show_delay_ms = 0,
+        scrollbar = false,
+      },
     },
     sources = {
       default = { 'lsp', 'path', 'snippets', 'buffer' },
       providers = {
-        snippets = { score_offset = 1000 },
+        snippets = {
+          score_offset = 1000,
+          -- 避免在 . " ' 等字符后触发 snippets
+          should_show_items = function(ctx)
+            return ctx.trigger.initial_kind ~= 'trigger_character'
+          end,
+        },
+        -- 同义词补全源
+        thesaurus = {
+          name = 'blink-cmp-words',
+          module = 'blink-cmp-words.thesaurus',
+          opts = {
+            -- 分数偏移量，默认最高分是 0
+            score_offset = 0,
+            -- 定义指针：定义每个定义下列出的词汇关系
+            -- "!" = 反义词, "&" = 相似词, "^" = 另见
+            definition_pointers = { '!', '&', '^' },
+            -- 相似词指针
+            similarity_pointers = { '&', '^' },
+            -- 相似词递归深度：1 是相似词，2 是相似词的相似词
+            similarity_depth = 2,
+          },
+        },
+        -- 词典补全源
+        dictionary = {
+          name = 'blink-cmp-words',
+          module = 'blink-cmp-words.dictionary',
+          opts = {
+            -- 触发补全所需的字符数
+            dictionary_search_threshold = 3,
+            score_offset = 0,
+            definition_pointers = { '!', '&', '^' },
+          },
+        },
+      },
+      -- 按文件类型设置补全源
+      per_filetype = {
+        text = { 'dictionary' },
+        markdown = { 'thesaurus' },
+        typst = { 'dictionary', 'thesaurus' },
+        tex = { 'dictionary', 'thesaurus' },
       },
     },
     signature = {

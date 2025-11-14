@@ -1,0 +1,20 @@
+# Neovim 示例配置目录
+nvim（示例）/
+
+# Lazy.nvim 插件目录
+lazy-lock.json
+
+# Neovim 运行时文件
+*.log
+*.tmp
+
+# 操作系统文件
+.DS_Store
+Thumbs.db
+
+# 编辑器备份文件
+*~
+*.swp
+*.swo
+*.swn
+
