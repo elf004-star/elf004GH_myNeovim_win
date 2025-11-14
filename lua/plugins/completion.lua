@@ -3,7 +3,6 @@ return {
   dependencies = {
     'rafamadriz/friendly-snippets',
     'williamboman/mason.nvim',
-    'archie-judd/blink-cmp-words',  -- 词典和同义词补全
   },
   event = { 'BufReadPost', 'BufNewFile' },
   version = '1.*',
@@ -45,41 +44,9 @@ return {
             return ctx.trigger.initial_kind ~= 'trigger_character'
           end,
         },
-        -- 同义词补全源
-        thesaurus = {
-          name = 'blink-cmp-words',
-          module = 'blink-cmp-words.thesaurus',
-          opts = {
-            -- 分数偏移量，默认最高分是 0
-            score_offset = 0,
-            -- 定义指针：定义每个定义下列出的词汇关系
-            -- "!" = 反义词, "&" = 相似词, "^" = 另见
-            definition_pointers = { '!', '&', '^' },
-            -- 相似词指针
-            similarity_pointers = { '&', '^' },
-            -- 相似词递归深度：1 是相似词，2 是相似词的相似词
-            similarity_depth = 2,
-          },
-        },
-        -- 词典补全源
-        dictionary = {
-          name = 'blink-cmp-words',
-          module = 'blink-cmp-words.dictionary',
-          opts = {
-            -- 触发补全所需的字符数
-            dictionary_search_threshold = 3,
-            score_offset = 0,
-            definition_pointers = { '!', '&', '^' },
-          },
-        },
+
       },
-      -- 按文件类型设置补全源
-      per_filetype = {
-        text = { 'dictionary' },
-        markdown = { 'thesaurus' },
-        typst = { 'dictionary', 'thesaurus' },
-        tex = { 'dictionary', 'thesaurus' },
-      },
+
     },
     signature = {
       enabled = true,
