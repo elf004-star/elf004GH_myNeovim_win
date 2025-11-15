@@ -120,6 +120,25 @@ return {
     keys = {
       { "<leader>e", "<CMD>NvimTreeToggle<CR>", mode = { "n" }, desc = "[NvimTree] Toggle NvimTree" },
     },
+    init = function()
+      -- 当使用 nvim . 打开目录时，自动打开 nvim-tree
+      local function open_nvim_tree()
+        -- 检查启动参数，如果第一个参数是目录，则自动打开 nvim-tree
+        local argc = vim.fn.argc()
+        if argc == 0 then
+          return
+        end
+
+        local file = vim.fn.argv(0)
+        if file and vim.fn.isdirectory(file) == 1 then
+          -- 切换到目录并打开 nvim-tree
+          vim.cmd.cd(file)
+          require("nvim-tree.api").tree.open()
+        end
+      end
+
+      vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_nvim_tree })
+    end,
     opts = {
       view = {
         width = 30,
