@@ -20,3 +20,9 @@ vim.keymap.set("v", "<C-v>", '"+p', { noremap = true, silent = true, desc = "Pas
 -- 插入模式下：Ctrl+V 从系统剪贴板粘贴
 -- 使用 <C-r>+ 可以在插入模式下粘贴，并且保持缩进
 vim.keymap.set("i", "<C-v>", '<C-r>+', { noremap = true, silent = true, desc = "Paste from system clipboard" })
+
+-- ============================================
+-- vim-surround: 在可视模式下使用 S 键包围选中文本
+-- ============================================
+-- 禁用 flash 的 S 键映射，确保 vim-surround 的 S 键可以正常工作
+vim.keymap.set("v", "S", "<Plug>VSurround", { desc = "Surround selection", remap = true, silent = true })
