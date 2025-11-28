@@ -51,3 +51,6 @@ require("lazy").setup({
     },
   },
 })
+
+-- win10系统开启下面的powershell的设置
+vim.o.shell = "pwsh.exe"

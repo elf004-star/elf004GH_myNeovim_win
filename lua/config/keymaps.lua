@@ -26,3 +26,6 @@ vim.keymap.set("i", "<C-v>", '<C-r>+', { noremap = true, silent = true, desc = "
 -- ============================================
 -- 禁用 flash 的 S 键映射，确保 vim-surround 的 S 键可以正常工作
 vim.keymap.set("v", "S", "<Plug>VSurround", { desc = "Surround selection", remap = true, silent = true })
+
+-- jk绑定ESC
+vim.keymap.set("i", "jk", "<Esc>", { desc = "jk to ESC", remap = true, silent = true })

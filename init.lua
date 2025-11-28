@@ -11,3 +11,4 @@ vim.env.https_proxy = "http://127.0.0.1:8118"
 
 -- bootstrap lazy.nvim, LazyVim and your plugins
 require("config.lazy")
+vim.o.clipboard = "unnamedplus"
