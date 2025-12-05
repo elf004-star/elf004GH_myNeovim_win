@@ -39,9 +39,9 @@ local function jump_out_of_bracket()
   local col = vim.api.nvim_win_get_cursor(0)[2] + 1 -- 转为1-indexed
   local brackets = { ")", "]", "}", ">", '"', "'", "`" }
 
-  -- 在当前光标之后查找最近的闭合括号
+  -- 在当前光标位置及之后查找最近的闭合括号
   local nearest_pos = nil
-  for i = col + 1, #line do
+  for i = col, #line do
     local char = line:sub(i, i)
     for _, b in ipairs(brackets) do
       if char == b then
