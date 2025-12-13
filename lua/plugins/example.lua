@@ -184,7 +184,7 @@ return {
 
   -- add any tools you want to have installed below
   {
-    "williamboman/mason.nvim",
+    "mason-org/mason.nvim", -- 更新仓库地址
     opts = {
       ensure_installed = {
         "stylua",

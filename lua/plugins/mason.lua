@@ -1,7 +1,7 @@
 return {
   -- 配置 Mason 工具管理器
   {
-    "williamboman/mason.nvim",
+    "mason-org/mason.nvim", -- 更新仓库地址
     opts = {
       -- 禁用 tree-sitter-cli 的自动安装
       -- Mason 会尝试自动安装 tree-sitter-cli，但在 Windows 上经常出现问题
@@ -14,7 +14,7 @@ return {
   },
   -- 配置 mason-lspconfig 以防止自动安装 tree-sitter-cli
   {
-    "williamboman/mason-lspconfig.nvim",
+    "mason-org/mason-lspconfig.nvim", -- 更新仓库地址
     opts = {
       -- 确保不会自动安装 tree-sitter-cli
       automatic_installation = {
