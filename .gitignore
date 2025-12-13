@@ -7,6 +7,6 @@ foo.*
 *.log
 data
 保留
-# lazy-lock.json
+lazy-lock.json
 
 
