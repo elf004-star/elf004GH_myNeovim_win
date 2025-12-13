@@ -1,0 +1,21 @@
+CompileFlags:
+  Add:
+    # UCRT64 标准库头文件路径
+    - -IC:/msys64/ucrt64/include
+    # GCC 内部头文件路径
+    - -IC:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/15.2.0/include
+    - -IC:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/15.2.0/include-fixed
+    # C++ 标准库头文件路径
+    - -IC:/msys64/ucrt64/include/c++/15.2.0
+    - -IC:/msys64/ucrt64/include/c++/15.2.0/x86_64-w64-mingw32
+    # 设置目标平台
+    - -target
+    - x86_64-w64-mingw32
+  Remove:
+    # 移除可能导致问题的警告
+    - -W*
+
+Diagnostics:
+  UnusedIncludes: Strict
+  MissingIncludes: Strict
+
