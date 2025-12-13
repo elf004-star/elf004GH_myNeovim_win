@@ -2,14 +2,9 @@ return {
   {
     "nvim-treesitter/nvim-treesitter",
     opts = function(_, opts)
-      -- 确保 jsonc 在安装列表中
-      if opts.ensure_installed then
-        if type(opts.ensure_installed) == "table" then
-          if not vim.tbl_contains(opts.ensure_installed, "jsonc") then
-            table.insert(opts.ensure_installed, "jsonc")
-          end
-        end
-      end
+      -- 完全禁用 ensure_installed，防止自动安装
+      -- 如果需要安装解析器，请手动使用 :TSInstall 命令
+      opts.ensure_installed = {}
 
       -- 配置解析器下载选项
       opts.parser_install_dir = nil -- 使用默认目录
