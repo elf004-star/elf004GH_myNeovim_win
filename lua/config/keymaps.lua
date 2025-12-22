@@ -26,6 +26,7 @@ vim.keymap.set("i", "<C-v>", '<C-r>+', { noremap = true, silent = true, desc = "
 -- ============================================
 -- 禁用 flash 的 S 键映射，确保 vim-surround 的 S 键可以正常工作
 vim.keymap.set("v", "S", "<Plug>VSurround", { desc = "Surround selection", remap = true, silent = true })
+vim.keymap.set("v", "s", "<Plug>VSurround", { desc = "Surround selection", remap = true, silent = true })
 
 -- jk绑定ESC
 vim.keymap.set("i", "jk", "<Esc>", { desc = "jk to ESC", remap = true, silent = true })
@@ -64,3 +65,11 @@ vim.keymap.set("i", "<C-]>", jump_out_of_bracket, { noremap = true, silent = tru
 vim.keymap.set("i", "<C-z>", "<cmd>undo<cr>", { desc = "Undo" })
 -- 在插入模式下使用 Ctrl+Y 重做
 vim.keymap.set("i", "<C-/>", "<cmd>redo<cr>", { desc = "Redo" })
+
+-- 插入模式下使用 Ctrl+e 向下滚动
+vim.keymap.set('i', '<C-e>', '<C-o><C-e>', { noremap = true, silent = true })
+
+-- 插入模式下使用 Ctrl+x 向上滚动
+vim.keymap.set('i', '<C-x>', '<C-o><C-y>', { noremap = true, silent = true })
+-- Normal 模式下使用 Ctrl+x 向上滚动
+vim.keymap.set('n', '<C-x>', '<C-y>', { noremap = true, silent = true })
