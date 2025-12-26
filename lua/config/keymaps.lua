@@ -68,8 +68,17 @@ vim.keymap.set("i", "<C-/>", "<cmd>redo<cr>", { desc = "Redo" })
 
 -- 插入模式下使用 Ctrl+e 向下滚动
 vim.keymap.set('i', '<C-e>', '<C-o><C-e>', { noremap = true, silent = true })
+vim.keymap.set('i', '<C-j>', '<C-o><C-e>', { noremap = true, silent = true })
 
 -- 插入模式下使用 Ctrl+x 向上滚动
 vim.keymap.set('i', '<C-x>', '<C-o><C-y>', { noremap = true, silent = true })
+vim.keymap.set('i', '<C-k>', '<C-o><C-y>', { noremap = true, silent = true })
+
 -- Normal 模式下使用 Ctrl+x 向上滚动
 vim.keymap.set('n', '<C-x>', '<C-y>', { noremap = true, silent = true })
+
+-- 这行似乎冲突，故不启用
+-- vim.keymap.set('n', '<C-k>', '<C-y>', { noremap = true, silent = true })
+
+-- Normal 模式下使用 Ctrl+j 向下滚动
+vim.keymap.set('n', '<C-j>', '<C-e>', { noremap = true, silent = true })
