@@ -80,5 +80,3 @@ vim.keymap.set('n', '<C-x>', '<C-y>', { noremap = true, silent = true })
 -- 这行似乎冲突，故不启用
 -- vim.keymap.set('n', '<C-k>', '<C-y>', { noremap = true, silent = true })
 
--- Normal 模式下使用 Ctrl+j 向下滚动
-vim.keymap.set('n', '<C-j>', '<C-e>', { noremap = true, silent = true })
