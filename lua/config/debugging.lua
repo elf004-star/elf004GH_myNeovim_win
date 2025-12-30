@@ -2,8 +2,14 @@ local dap = require("dap")
 
 -- NOTE: configure adapters
 dap.adapters.codelldb = {
-	type = "executable",
-	command = "codelldb", -- or if not in $PATH: "/absolute/path/to/codelldb"
+	type = "server",
+	port = "${port}",
+	executable = {
+		command = "codelldb",
+		args = { "--port", "${port}" },
+		-- On windows you may have to uncomment this:
+		detached = false,
+	},
 }
 dap.adapters.cppdbg = {
 	id = "cppdbg",
