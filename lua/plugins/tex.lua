@@ -16,9 +16,23 @@ return {
             vim.g.vimtex_view_general_options_latex_mode = "xelatex"
 
             -- 5. 指定默认编译引擎为 xelatex
+            --    注意：引擎映射必须用 g:vimtex_compiler_latexmk_engines，
+            --    g:vimtex_compiler_latexmk 里没有 engines 键，写在那里会被静默忽略，
+            --    导致落回默认 -pdf（pdflatex），中文文档编译报 Undefined control sequence。
+            vim.g.vimtex_compiler_latexmk_engines = {
+                _ = "-xelatex",
+            }
+
+            -- 6. 输出目录 Build/（与 VS Code 的 -outdir=Build 保持一致），
+            --    并补上 -shell-escape。options 会整体覆盖默认值，所以列全。
             vim.g.vimtex_compiler_latexmk = {
-                engines = {
-                    _ = "-xelatex",
+                out_dir = "Build",
+                options = {
+                    "-verbose",
+                    "-file-line-error",
+                    "-synctex=1",
+                    "-interaction=nonstopmode",
+                    "-shell-escape",
                 },
             }
 
